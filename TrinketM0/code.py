@@ -1,4 +1,4 @@
-# Hasbro Ghostbusters Proton Pack Keepalive
+# Hasbro Spengler Series Neutrona Wand Keepalive
 #
 # Dustin Grau - dustin.grau@gmail.com
 # Atlanta Ghostbusters
