@@ -11,8 +11,9 @@
 # A/B signal wires in order to cheat the built-in
 # 30-second timeout.
 
-import time
 import board
+import random
+import time
 from digitalio import DigitalInOut, Direction
 
 # Set a flag for visual feedback via the DotStar LED
@@ -41,6 +42,9 @@ def increment(sleepFor):
     time.sleep(sleepFor)
     p1.value = False
     time.sleep(sleepFor)
+    p2.value = False
+    time.sleep(sleepFor)
+    p1.value = False
 
 def decrement(sleepFor):
     p1.value = True
@@ -51,27 +55,26 @@ def decrement(sleepFor):
     time.sleep(sleepFor)
     p2.value = False
     time.sleep(sleepFor)
+    p1.value = False
+    time.sleep(sleepFor)
+    p2.value = False
 
 while True:
     # Turn the LED green while in a waiting state
     if feedback:
         led[0] = (0, 255, 0)
-    time.sleep(9)
+    time.sleep(5)
 
     if feedback:
         led[0] = (255, 0, 0)
-    increment(0.05)
-    increment(0.05)
-    increment(0.05)
-    increment(0.05)
-    increment(0.05)
-    time.sleep(1.75)
+    increment(0.06)
+    increment(0.06)
+    increment(0.06)
+    time.sleep(2.0)
 
     if feedback:
         led[0] = (0, 0, 255)
-    decrement(0.05)
-    decrement(0.05)
-    decrement(0.05)
-    decrement(0.05)
-    decrement(0.05)
-    time.sleep(1.75)
+    decrement(0.06)
+    decrement(0.06)
+    decrement(0.06)
+    time.sleep(2.0)
