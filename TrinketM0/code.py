@@ -1,15 +1,14 @@
-# Hasbro Spengler Series Neutrona Wand Keepalive
+# Hasbro Spengler Neutrona Wand Keepalive
 #
 # Dustin Grau - dustin.grau@gmail.com
-# Atlanta Ghostbusters
+#  - Atlanta Ghostbusters -
 #
-# Released under Creative Commons license:
-# CC BY-NC-SA
-# Attribution-NonCommercial-ShareAlike
+# Released under the Apache 2.0 license
 #
 # Designed to work with the digital encoder (dial)
 # in the Neutrona Wand to send a high (+VCC) signal
-# to the A/B wires in order to cheat the built-in
+# to the encoder controls (wand intensity) via the
+# A/B signal wires in order to cheat the built-in
 # 30-second timeout.
 
 import time
@@ -33,25 +32,46 @@ p1.direction = Direction.OUTPUT
 p2 = DigitalInOut(board.D4)
 p2.direction = Direction.OUTPUT
 
+def increment(sleepFor):
+    p2.value = True
+    time.sleep(sleepFor)
+    p1.value = True
+    time.sleep(sleepFor)
+    p2.value = False
+    time.sleep(sleepFor)
+    p1.value = False
+    time.sleep(sleepFor)
+
+def decrement(sleepFor):
+    p1.value = True
+    time.sleep(sleepFor)
+    p2.value = True
+    time.sleep(sleepFor)
+    p1.value = False
+    time.sleep(sleepFor)
+    p2.value = False
+    time.sleep(sleepFor)
+
 while True:
     # Turn the LED green while in a waiting state
     if feedback:
         led[0] = (0, 255, 0)
-    time.sleep(5.0)
+    time.sleep(9)
 
-    # Change to red before sending the first signal
     if feedback:
         led[0] = (255, 0, 0)
-    p1.value = True
-    time.sleep(1.0)
-    p1.value = False
+    increment(0.05)
+    increment(0.05)
+    increment(0.05)
+    increment(0.05)
+    increment(0.05)
+    time.sleep(1.75)
 
-    # Pause between sending signals
-    time.sleep(1.0)
-
-    # Change to blue before sending the next signal
     if feedback:
         led[0] = (0, 0, 255)
-    p2.value = True
-    time.sleep(1.0)
-    p2.value = False
+    decrement(0.05)
+    decrement(0.05)
+    decrement(0.05)
+    decrement(0.05)
+    decrement(0.05)
+    time.sleep(1.75)
