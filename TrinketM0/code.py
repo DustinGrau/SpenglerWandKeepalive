@@ -33,55 +33,54 @@ p1.direction = Direction.OUTPUT
 p2 = DigitalInOut(board.D4)
 p2.direction = Direction.OUTPUT
 
+# We need to first approximate the rise and fall
+# for a single "bump" as the encoder would send
+# as you turn it. The increment should be a turn
+# clockwise (to raise intensity) while decrement
+# is a counterclockwise turn.
+
 def increment(sleepFor):
+    # Rise
+    time.sleep(sleepFor)
     p2.value = True
-    time.sleep(sleepFor)
+    time.sleep(sleepFor / 2)
     p1.value = True
+    # Fall
     time.sleep(sleepFor)
     p2.value = False
-    time.sleep(sleepFor)
-    p1.value = False
-    time.sleep(sleepFor)
-    p2.value = False
-    time.sleep(sleepFor)
-    p1.value = False
-    time.sleep(sleepFor)
-    p2.value = False
-    time.sleep(sleepFor)
+    time.sleep(sleepFor / 2)
     p1.value = False
 
 def decrement(sleepFor):
+    # Rise
+    time.sleep(sleepFor)
     p1.value = True
-    time.sleep(sleepFor)
+    time.sleep(sleepFor / 2)
     p2.value = True
+    # Fall
     time.sleep(sleepFor)
     p1.value = False
-    time.sleep(sleepFor)
-    p2.value = False
-    time.sleep(sleepFor)
-    p1.value = False
-    time.sleep(sleepFor)
-    p2.value = False
-    time.sleep(sleepFor)
-    p1.value = False
-    time.sleep(sleepFor)
+    time.sleep(sleepFor / 2)
     p2.value = False
 
 while True:
-    # Turn the LED green while in a waiting state
+    # Just loop forever...
+
     if feedback:
-        led[0] = (0, 255, 0)
+        led[0] = (0, 255, 0) # Green for waiting
     time.sleep(5)
 
     if feedback:
-        led[0] = (255, 0, 0)
+        led[0] = (255, 0, 0) # Red for increase
+    # It takes at least 3 "bumps" to register as an increase
     increment(0.06)
     increment(0.06)
     increment(0.06)
     time.sleep(2.0)
 
     if feedback:
-        led[0] = (0, 0, 255)
+        led[0] = (0, 0, 255) # Blue for decrease
+    # It takes at least 3 "bumps" to register as a decrease
     decrement(0.06)
     decrement(0.06)
     decrement(0.06)
