@@ -45,11 +45,19 @@ def increment(sleepFor):
     p2.value = False
     time.sleep(sleepFor)
     p1.value = False
+    time.sleep(sleepFor)
+    p2.value = False
+    time.sleep(sleepFor)
+    p1.value = False
 
 def decrement(sleepFor):
     p1.value = True
     time.sleep(sleepFor)
     p2.value = True
+    time.sleep(sleepFor)
+    p1.value = False
+    time.sleep(sleepFor)
+    p2.value = False
     time.sleep(sleepFor)
     p1.value = False
     time.sleep(sleepFor)
