@@ -35,10 +35,11 @@ This mod will require some actions which may not be suitable or favorable to eve
 
 **Optional:**
 
-[6-Pin Plug](https://a.co/bmi4JxW) - As noted, this mod requires additional power to the wand for the microcontroller but this is an opportunity to plan for other potential mods such as audio-return from the wand. If you wish to keep everything self-contained and plan to replace your stock connection hose (or at least the wires inside of it) then you will want at least 3 pairs (6 total) of wires for the most common mods:
+[6-Pin Plug](https://a.co/bmi4JxW) - As noted, this mod requires additional power to the wand for the microcontroller but this is an opportunity to plan for other potential mods such as audio-return from the wand to the pack. If you wish to keep everything self-contained and plan to replace your stock connection hose (or at least the wires inside of it) then you will want at least 3 pairs (6 total) of wires for the most common mods:
 
   - Two (2) pairs for normal power from the U7 port on the pack controller for the wand's normal integration (triggers the pack on/off).
   - Two (2) pairs for new power to our microcontroller and any other devices which we may want to run without triggering the pack power-up.
+    - Note that as the community works towards better upgrades to the electronics, these 2 wires may be reused for TX/RX signals between the wand and pack. Hence, adding them now for additional power means they're available for re-use later should a better solution come available.
   - Two (2) pairs for audio to be returned to the pack to play the thrower sounds on amplified speakers (again, optional but popular).
 
 Alternatively, you could run your new power and an aux audio cable on the outside of the wand as some pack owners have done, which is close to the Afterlife style of decorating the pack. How you choose to get power to the wand is entirely up to you though we will definitely need it.
@@ -59,30 +60,30 @@ Before proceeding we need to open the wand and identify some parts. For gaining 
 
 First, we should also pre-load the software onto the microcontroller.
 
-* Using a good micro-USB cable (which supports data as well as power) connect the TrinketM0 to your computer.
-* Copy the contents inside of the "TrinketM0" folder onto a USB drive named "CIRCUITPY".
-* Once everything is copied the microcontroller is ready for use and can be disconnected.
+1. Using a good micro-USB cable (which supports data as well as power) connect the TrinketM0 to your computer.
+1. Copy the contents inside of the "TrinketM0" folder onto a USB drive named "CIRCUITPY".
+1. Once everything is copied the microcontroller is ready for use and can be disconnected.
 
 ![TrinketM0](Images/TrinketM0.jpg)
 
-For power, we can split off of the 5VDC power going to the pack controller. For consistency these wires should be red and black in color. Meanwhile, our other wires can be any color you wish, just not red or black. Remember, how you get this power to your wand is up to you--you could replace the stock hose and wiring entirely, or add these as both functional and decorative wires to the outside of the wand as done in the Afterlife style.
+Next, we need power. We can split off of the 5VDC power going to the pack controller if you've already opened your pack or added an external battery. For consistency these wires should be red and black in color and match up with the original power supply for the pack controller. Meanwhile, our other control wires can be any color you wish (just not red or black). Remember, how you get this power to your wand is up to you--as you could replace the stock hose and wiring entirely or add these as both functional and decorative wires to the outside of the wand as done in the Afterlife style.
 
-* Solder red/positive (max +5V) to the hole labelled "Bat" on the TrinketM0.
-* Solder black/negative to the hole labelled "Gnd" on the TrinketM0.
-* Solder a 3-5" wire to the hold labelled "3" (use any color other than red or black).
-* Solder a 3-5" wire to the hold labelled "4" (use any color other than red or black).
+1. Solder red/positive (max +5V) to the hole labelled "Bat" on the TrinketM0.
+1. Solder black/negative to the hole labelled "Gnd" on the TrinketM0.
+1. Solder a 3-5" wire to the hold labelled "3" (use any color other than red or black).
+1. Solder a 3-5" wire to the hold labelled "4" (use any color other than red or black).
 
 ![Controller](Images/Controller.jpg)
 
-We now need to identify the wires which are soldered directly to an area labelled "SW3" on the wand controller. For reference this will be at the corner of the controller close to the release lever on the side of the gunbox. The wires we want are in the SW3 labelled area, are Brown, Red, and Yellow, and they represent the positive voltage (V+), A signal, and B signal respectively. (Essentially, when a rotary encoder is turned there is a pulse sent back to the controller on either the A or B signal lines indicating which direction it was turned.)
+We now need to identify the wires which are soldered directly to an area labelled "SW3" on the wand controller. For reference this will be at the corner of the controller close to the release lever on the side of the gunbox. The wires we want are in the SW3 labelled area, are Brown, Red, and Yellow, and they represent the positive voltage (V+), A signal, and B signal respectively. (Essentially, when a rotary encoder is turned there is a pulse sent back to the controller on the A and B signal lines indicating which direction it was turned.)
 
-For the connection to the controller we need will attach to the backside of the Red and Yellow wires of SW3 identified earlier.
+Lastly, for the connection to the controller we need will attach to the backside of the Red and Yellow wires of SW3 identified earlier.
 
-* Unscrew the 4 small screws holding the controller down in the gunbox.
-* Carefully move any wires out of the way as you flip the board upside down.
-* Use your "helping hands" to hold the controller board and each of the wires close to their destination.
-* Pre-tin the wires to make this easier (cover them in a bit of molten solder) to make it easier to connect.
-* Use a brief touch with the soldering iron, just enough to melt the tinned wires to the existing solder joint without causing the original wires to come loose. The order of these should not be important but for sake of consistency:
+1. Unscrew the 4 small screws holding the controller down in the gunbox.
+1. Carefully move any wires out of the way as you flip the board upside down.
+1. Use your "helping hands" to hold the controller board and each of the wires close to their destination.
+1. Pre-tin the wires to make this easier (cover them in a bit of molten solder) to make it easier to connect.
+1. Use a brief touch with the soldering iron, just enough to melt the tinned wires to the existing solder joint without causing the original wires to come loose. The order of these should not be important but for sake of consistency:
 	* Solder the wire from pin "3" to the backside of the Yellow wire (closest to the screw hole).
 	* Solder the wire from pin "4" to the backside of the Red wire (just beside our previous attachment).
 
